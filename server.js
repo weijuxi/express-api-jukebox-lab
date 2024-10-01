@@ -7,6 +7,8 @@ const methodOverride = require('method-override');
 const cors = require('cors');
 
 
+const trackRouter = require('./controllers/tracks.js');
+
 mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on('connected', () => {
@@ -16,6 +18,7 @@ mongoose.connection.on('connected', () => {
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(cors());
+app.use('/tracks', trackRouter);
 
 // Routes go here
 
